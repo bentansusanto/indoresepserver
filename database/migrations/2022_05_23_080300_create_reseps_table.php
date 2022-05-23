@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('reseps', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name');
             $table->longText('desc');
             $table->string('image');
