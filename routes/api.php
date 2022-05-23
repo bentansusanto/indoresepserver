@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ApiDestinasiController;
+use App\Http\Controllers\ApiResepController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('/reseps', ApiResepController::class);
+Route::resource('/destinasis', ApiDestinasiController::class);
