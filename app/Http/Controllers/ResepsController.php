@@ -41,8 +41,12 @@ class ResepsController extends Controller
             'desc' => 'required',
             'image' => 'required|max:1024'
         ]);
-
         $resep = Resep::create($request->all());
+        if($request->hasFile('image')){
+            $request->file('image')->move('produk', $request->file('image')->getClientOriginalName());
+            $resep->image = $request->file('image')->getClientOriginalName();
+            $resep->save();
+        }
         return redirect('/reseps')->with(['success','Data telah ditambahkan']);
     }
 
@@ -87,6 +91,13 @@ class ResepsController extends Controller
                             'desc' => $request->desc,
                             'image' => $request->image,
                         ]);
+
+                 if($request->hasFile('image')){
+                        $request->file('image')->move('produk', $request->file('image')->getClientOriginalName());
+                        $resep->image = $request->file('image')->getClientOriginalName();
+                        $resep->save();
+                     }
+                     
             return redirect('/reseps')->with(['success','Data telah ditambahkan']);
 
     }
