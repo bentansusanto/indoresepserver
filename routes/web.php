@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\ResepsController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +28,4 @@ Route::get('/', function () {
 // Route::delete('/reseps/{resep}', [ResepsController::class, 'destroy']);
 
 Route::resource('/reseps', ResepsController::class);
+Route::resource('/destinasis', DestinasiController::class);

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Resep;
+use App\Models\Destinasi;
 use Illuminate\Http\Request;
 
-class ResepsController extends Controller
+class DestinasiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ResepsController extends Controller
      */
     public function index()
     {
-        $reseps = Resep::all();
-        return view('resep', compact('reseps'));
+        $destinasis = Destinasi::all();
+        return view('destinasi.destinasi', compact('destinasis'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ResepsController extends Controller
      */
     public function create()
     {
-        return view('createresep');
+        return view('destinasi.create');
     }
 
     /**
@@ -41,52 +41,52 @@ class ResepsController extends Controller
             'desc' => 'required',
             'image' => 'required|max:1024'
         ]);
-        $resep = Resep::create($request->all());
+        $destinasi = Destinasi::create($request->all());
         if($request->hasFile('image')){
             $request->file('image')->move('produk', $request->file('image')->getClientOriginalName());
-            $resep->image = $request->file('image')->getClientOriginalName();
-            $resep->save();
+            $destinasi->image = $request->file('image')->getClientOriginalName();
+            $destinasi->save();
         }
-        return redirect('/reseps')->with(['success','Data telah ditambahkan']);
+        return redirect('/destinasis')->with(['success','Data telah ditambahkan']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Resep  $resep
+     * @param  \App\Models\Destinasi  $destinasi
      * @return \Illuminate\Http\Response
      */
-    public function show(Resep $resep)
+    public function show(Destinasi $destinasi)
     {
-        return view('showresep', compact('resep'));
+        return view('destinasi.show', compact('destinasi'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Resep  $resep
+     * @param  \App\Models\Destinasi  $destinasi
      * @return \Illuminate\Http\Response
      */
-    public function edit(Resep $resep)
+    public function edit(Destinasi $destinasi)
     {
-        return view('editresep', compact('resep'));
+        return view('destinasi.edit', compact('destinasi'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Resep  $resep
+     * @param  \App\Models\Destinasi  $destinasi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Resep $resep)
+    public function update(Request $request, Destinasi $destinasi)
     {
         $request->validate([
             'name' => 'required',
             'desc' => 'required',
             'image' => 'required|max:1024'
         ]);
-            Resep::where('id', $resep->id)
+            Destinasi::where('id', $destinasi->id)
                   ->update(['name' => $request->name,
                             'desc' => $request->desc,
                             'image' => $request->image,
@@ -94,24 +94,22 @@ class ResepsController extends Controller
 
                  if($request->hasFile('image')){
                         $request->file('image')->move('produk', $request->file('image')->getClientOriginalName());
-                        $resep->image = $request->file('image')->getClientOriginalName();
-                        $resep->save();
+                        $destinasi->image = $request->file('image')->getClientOriginalName();
+                        $destinasi->save();
                      }
 
-            return redirect('/reseps')->with(['success','Data telah ditambahkan']);
-
+            return redirect('/destinasis')->with(['success','Data telah ditambahkan']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Resep  $resep
+     * @param  \App\Models\Destinasi  $destinasi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Resep $resep)
+    public function destroy(Destinasi $destinasi)
     {
-        Resep::destroy($resep->id);
-        return redirect('/reseps')->with(['success','Data telah ditambahkan']);
-
+        Destinasi::destroy($destinasi->id);
+        return redirect('/destinasis')->with(['success','Data telah ditambahkan']);
     }
 }

@@ -1,5 +1,5 @@
 @extends('master')
-@section('title')
+
 @section('content')
     <div class="container">
         <div class="card mt-3" style="width: 18rem;">
