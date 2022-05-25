@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="container">
-        <div class="card mt-3" style="width: 18rem;">
-            <img src="{{asset('produk/'. $resep->image)}}" class="card-img-top w-100">
+        <div class="card mt-3" style="width: 28rem;">
+            <img src="{{asset('storage/'. $resep->image)}}" class="card-img-top w-100">
             <div class="card-body">
               <h5 class="card-title">{{$resep->name}}</h5>
-              <p class="card-text">{{$resep->desc}}</p>
+                <p class="card-text">{{$resep->desc}}</p>
             <form action="/reseps/{{$resep->id}}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')

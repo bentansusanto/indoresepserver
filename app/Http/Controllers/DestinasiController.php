@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Destinasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class DestinasiController extends Controller
 {
@@ -36,17 +37,17 @@ class DestinasiController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required',
             'desc' => 'required',
-            'image' => 'required|max:1024'
+            'image' => 'required|file|max:1024'
         ]);
-        $destinasi = Destinasi::create($request->all());
         if($request->hasFile('image')){
-            $request->file('image')->move('produk', $request->file('image')->getClientOriginalName());
-            $destinasi->image = $request->file('image')->getClientOriginalName();
-            $destinasi->save();
+            $validatedData['image'] = $request->file('image')->store('destinasi');
         }
+        $validatedData['desc'] = Str::limit(strip_tags($request->desc),100);
+
+        Destinasi::create($validatedData);
         return redirect('/destinasis')->with(['success','Data telah ditambahkan']);
     }
 
@@ -81,22 +82,18 @@ class DestinasiController extends Controller
      */
     public function update(Request $request, Destinasi $destinasi)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required',
             'desc' => 'required',
-            'image' => 'required|max:1024'
+            'image' => 'required|file|max:1024'
         ]);
-            Destinasi::where('id', $destinasi->id)
-                  ->update(['name' => $request->name,
-                            'desc' => $request->desc,
-                            'image' => $request->image,
-                        ]);
+            if($request->hasFile('image')){
+                $validatedData['image'] = $request->file('image')->store('destinasi');
+            }
 
-                 if($request->hasFile('image')){
-                        $request->file('image')->move('produk', $request->file('image')->getClientOriginalName());
-                        $destinasi->image = $request->file('image')->getClientOriginalName();
-                        $destinasi->save();
-                     }
+            $validatedData['desc'] = Str::limit(strip_tags($request->desc),100);
+
+            Destinasi::where('id', $destinasi->id)->update($validatedData);
 
             return redirect('/destinasis')->with(['success','Data telah ditambahkan']);
     }

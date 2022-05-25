@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="card mt-3" style="width: 18rem;">
-            <img src="{{asset('produk/'. $destinasi->image)}}" class="card-img-top w-100">
+            <img src="{{asset('storage/'. $destinasi->image)}}" class="card-img-top w-100">
             <div class="card-body">
               <h5 class="card-title">{{$destinasi->name}}</h5>
               <p class="card-text">{{$destinasi->desc}}</p>
