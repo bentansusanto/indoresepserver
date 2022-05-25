@@ -21,6 +21,7 @@
               <a class="nav-link active" aria-current="page" href="/">Home</a>
               <a class="nav-link" href="/reseps">Makanan</a>
               <a class="nav-link" href="/destinasis">Destinasi</a>
+              <a class="nav-link" href="/reviews">Testimoni</a>
             </div>
           </div>
         </div>

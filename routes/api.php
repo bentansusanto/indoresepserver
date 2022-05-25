@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiDestinasiController;
 use App\Http\Controllers\ApiResepController;
+use App\Http\Controllers\ApiReviewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('/reseps', ApiResepController::class);
 Route::resource('/destinasis', ApiDestinasiController::class);
+Route::resource('/reviews', ApiReviewController::class);

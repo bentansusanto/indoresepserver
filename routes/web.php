@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\ResepsController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,13 +20,12 @@ Route::get('/', function () {
     return view('home');
 });
 
-// Route::get('/reseps', [ResepsController::class, 'index']);
-// Route::get('/reseps/create', [ResepsController::class, 'create']);
-// Route::post('/reseps', [ResepsController::class, 'store']);
-// Route::get('/reseps/{resep}', [ResepsController::class, 'show']);
-// Route::get('/reseps/{resep}/edit', [ResepsController::class, 'edit']);
-// Route::put('/reseps/{resep}', [ResepsController::class, 'update']);
-// Route::delete('/reseps/{resep}', [ResepsController::class, 'destroy']);
 
 Route::resource('/reseps', ResepsController::class);
 Route::resource('/destinasis', DestinasiController::class);
+
+
+Route::controller(ReviewController::class)->group(function () {
+    Route::get('/reviews', 'index');
+    Route::get('/reviews/{review}', 'show');
+});
