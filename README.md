@@ -11,11 +11,18 @@
 
 ## Api Resep Makanan
 - Menampilkan Semua Data
-http://127.0.0.1:8000/api/reseps
+GET : http://127.0.0.1:8000/api/reseps
 - Menampilkan Spesifik Data
-http://127.0.0.1:8000/api/reseps/id
+GET : http://127.0.0.1:8000/api/reseps/id
 ## Api Destinasi
 - Menampilkan Semua Data
-http://127.0.0.1:8000/api/destinasis
+GET : http://127.0.0.1:8000/api/destinasis
 - Menampilkan Spesifik Data
-http://127.0.0.1:8000/api/destinasis/id
+GET : http://127.0.0.1:8000/api/destinasis/id
+## Api Review
+- Menampilkan Semua Data
+GET : http://127.0.0.1:8000/api/reviews
+- Menampilkan Spesifik Data
+GET : http://127.0.0.1:8000/api/reviews/id
+- Menambahkan Data
+POST : http://127.0.0.1:8000/api/reviews/id
