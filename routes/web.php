@@ -20,12 +20,11 @@ Route::get('/', function () {
     return view('home');
 });
 
-
 Route::resource('/reseps', ResepsController::class);
 Route::resource('/destinasis', DestinasiController::class);
-
 
 Route::controller(ReviewController::class)->group(function () {
     Route::get('/reviews', 'index');
     Route::get('/reviews/{review}', 'show');
+    Route::delete('/reviews/{review}', 'destroy');
 });

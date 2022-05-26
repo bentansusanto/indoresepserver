@@ -81,6 +81,7 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        //
+        Review::destroy($review->id);
+        return redirect('/reviews')->with(['success','Data telah ditambahkan']);
     }
 }
