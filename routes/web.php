@@ -28,3 +28,8 @@ Route::controller(ReviewController::class)->group(function () {
     Route::get('/reviews/{review}', 'show');
     Route::delete('/reviews/{review}', 'destroy');
 });
+
+
+
+
+
