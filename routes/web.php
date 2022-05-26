@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DestinasiController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ResepsController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,5 @@ Route::controller(ReviewController::class)->group(function () {
     Route::delete('/reviews/{review}', 'destroy');
 });
 
-
-
-
+Route::get('/login', [LoginController::class, 'login']);
 

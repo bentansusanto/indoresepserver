@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <form action="" method="POST">
+        <form action="" method="POST" style="">
             @csrf
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>
