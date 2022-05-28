@@ -1,0 +1,22 @@
+.login{
+    width: 450px;
+    margin: 50px auto;
+}
+.login input::placeholder{
+    color: #a4a4a4;
+    font-size: .9rem;
+    font-weight: 300;
+}
+.btn{
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.login p{
+    font-size: .9rem;
+    text-align: center;
+    padding-top: 10px;
+}
+.login p a{
+    text-decoration: none;
+}

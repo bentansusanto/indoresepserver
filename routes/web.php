@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResepsController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,7 @@ Route::get('/', function () {
 });
 
 Route::resource('/reseps', ResepsController::class);
-Route::resource('/destinasis', DestinasiController::class);
+Route::resource('/destinasis',DestinasiController::class);
 
 Route::controller(ReviewController::class)->group(function () {
     Route::get('/reviews', 'index');
@@ -30,5 +31,14 @@ Route::controller(ReviewController::class)->group(function () {
     Route::delete('/reviews/{review}', 'destroy');
 });
 
-Route::get('/login', [LoginController::class, 'login']);
+Route::controller(LoginController::class)->group(function (){
+    Route::get('/login', 'index');
+    Route::post('/login', 'login');
+});
+
+Route::controller(RegisterController::class)->group(function (){
+    Route::get('/register', 'index');
+    Route::post('/register', 'register');
+});
+
 
