@@ -48,7 +48,7 @@ class DestinasiController extends Controller
         $validatedData['desc'] = Str::limit(strip_tags($request->desc),100);
 
         Destinasi::create($validatedData);
-        return redirect('/destinasis')->with(['success','Data telah ditambahkan']);
+        return redirect('/destinasis')->with(['success','Data berhasil ditambahkan']);
     }
 
     /**
@@ -95,7 +95,7 @@ class DestinasiController extends Controller
 
             Destinasi::where('id', $destinasi->id)->update($validatedData);
 
-            return redirect('/destinasis')->with(['success','Data telah ditambahkan']);
+            return redirect('/destinasis')->with(['success','Data berhasil diupdate']);
     }
 
     /**
@@ -107,6 +107,6 @@ class DestinasiController extends Controller
     public function destroy(Destinasi $destinasi)
     {
         Destinasi::destroy($destinasi->id);
-        return redirect('/destinasis')->with(['success','Data telah ditambahkan']);
+        return redirect('/destinasis')->with(['success','Data telah dihapus']);
     }
 }

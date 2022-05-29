@@ -7,8 +7,9 @@
         <h2 class="text-center">Registrasi</h2>
         <form class="login" action="/register" method="POST" enctype="multipart/form-data">
             @csrf
+
             <div class="mb-3">
-              <input type="text" class="form-control  @error('name') is-invalid @enderror" name="name" id="exampleInput1" placeholder="Input your name" value="{{old('name')}}">
+              <input type="text" class="form-control text-capitalize"  @error('name') is-invalid @enderror" name="name" id="exampleInput1" placeholder="Input your name" value="{{old('name')}}">
               @error('name')
               <div class="invalid-feedback">{{ $message }}</div>
           @enderror

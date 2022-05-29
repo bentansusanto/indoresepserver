@@ -50,10 +50,10 @@ class ResepsController extends Controller
         if($request->hasFile('image')){
             $validatedData['image'] = $request->file('image')->store('produk');
         }
-        $validatedData['desc'] = Str::limit(strip_tags($request->desc),100);
+        // $validatedData['desc'] = Str::limit(($request->desc),100);
 
         Resep::create($validatedData);
-        return redirect('/reseps')->with(['success','Data telah ditambahkan']);
+        return redirect('/reseps')->with(['berhasil','Data berhasil ditambahkan']);
     }
 
     /**
@@ -96,11 +96,11 @@ class ResepsController extends Controller
                 $validatedData['image'] = $request->file('image')->store('produk');
             }
 
-            $validatedData['desc'] = Str::limit(strip_tags($request->desc),100);
+            // $validatedData['desc'] = Str::limit(($request->desc),100);
 
             Resep::where('id', $resep->id)->update($validatedData);
 
-            return redirect('/reseps')->with(['success','Data telah ditambahkan']);
+            return redirect('/reseps')->with(['berhasil','Data berhasil diupdate']);
     }
 
     /**
@@ -112,7 +112,7 @@ class ResepsController extends Controller
     public function destroy(Resep $resep)
     {
         Resep::destroy($resep->id);
-        return redirect('/reseps')->with(['success','Data telah ditambahkan']);
+        return redirect('/reseps')->with(['berhasil','Data telah dihapus']);
 
     }
 }

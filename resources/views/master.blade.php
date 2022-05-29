@@ -22,6 +22,12 @@
               <a class="nav-link" href="/reseps">Makanan</a>
               <a class="nav-link" href="/destinasis">Destinasi</a>
               <a class="nav-link" href="/reviews">Testimoni</a>
+              <a class="nav-link">
+                  <form action="/logout" method="POST">
+                    @csrf
+                      <button style="border: none; background-color: unset;">Logout</button>
+                  </form>
+              </a>
             </div>
           </div>
         </div>

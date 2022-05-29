@@ -1,7 +1,8 @@
 <?php
-
 use App\Http\Controllers\DestinasiController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResepsController;
 use App\Http\Controllers\ReviewController;
@@ -18,12 +19,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
 
-Route::resource('/reseps', ResepsController::class);
-Route::resource('/destinasis',DestinasiController::class);
+Route::get('/',[HomeController::class, 'index'])->middleware('auth');
+
+Route::resource('/reseps', ResepsController::class)->middleware('auth');
+Route::resource('/destinasis',DestinasiController::class)->middleware('auth');
+
 
 Route::controller(ReviewController::class)->group(function () {
     Route::get('/reviews', 'index');
@@ -31,14 +32,14 @@ Route::controller(ReviewController::class)->group(function () {
     Route::delete('/reviews/{review}', 'destroy');
 });
 
-Route::controller(LoginController::class)->group(function (){
-    Route::get('/login', 'index');
-    Route::post('/login', 'login');
-});
+Route::get('/login',[LoginController::class,'index'])->middleware('guest')->name('login');
+Route::post('/login',[LoginController::class,'login']);
 
 Route::controller(RegisterController::class)->group(function (){
-    Route::get('/register', 'index');
+    Route::get('/register', 'index')->middleware('guest');
     Route::post('/register', 'register');
 });
+
+Route::post('/logout',[LogoutController::class,'logout']);
 
 

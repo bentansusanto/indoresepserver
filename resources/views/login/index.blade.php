@@ -5,13 +5,7 @@
 @section('content')
     <div class="container mt-5">
         <h2 class="text-center">Login</h2>
-        @if (session()->has('loginError'))
-            <div class="alert alert-success">
-                {{session('failed')}}
-                <button type="button" class="btn-close"></button>
-            </div>
-        @endif
-        <form class="login" action="/login" method="post" style="">
+        <form class="login" action="/login" method="post">
             @csrf
             @if (session()->has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -19,7 +13,14 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            
+
+            @if (session()->has('loginError'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{session('loginError')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
             <div class="mb-3">
               <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="Input your email" autofocus required>
             </div>
