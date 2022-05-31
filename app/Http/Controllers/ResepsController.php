@@ -42,17 +42,28 @@ class ResepsController extends Controller
         //     'desc' => 'required',
         //     'image' => 'required|max:1024'
         // ]);
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required',
             'desc' => 'required',
             'image' => 'required|file|max:1024'
         ]);
-        if($request->hasFile('image')){
-            $validatedData['image'] = $request->file('image')->store('produk');
-        }
-        // $validatedData['desc'] = Str::limit(($request->desc),100);
+        // $validatedData = $request->validate([
+        //     'name' => 'required',
+        //     'desc' => 'required',
+        //     'image' => 'required|file|max:1024'
+        // ]);
 
-        Resep::create($validatedData);
+        // if($request->hasFile('image')){
+        //     $validatedData['image'] = $request->file('image')->store('produk');
+        // }
+        // $validatedData['desc'] = Str::limit(($request->desc),100);
+        $resep = Resep::create($request->all());
+        if($request->hasFile('image')){
+            $request->file('image')->move('produk', $request->file('image')->getClientOriginalName());
+            $resep->image = $request->file('image')->getClientOriginalName();
+            $resep->save();
+        }
+        // Resep::create($validatedData);
         return redirect('/reseps')->with(['berhasil','Data berhasil ditambahkan']);
     }
 
@@ -87,18 +98,31 @@ class ResepsController extends Controller
      */
     public function update(Request $request, Resep $resep)
     {
-        $validatedData = $request->validate([
+        // $validatedData = $request->validate([
+        //     'name' => 'required',
+        //     'desc' => 'required',
+        //     'image' => 'required|file|max:1024'
+        // ]);
+
+        $request->validate([
             'name' => 'required',
             'desc' => 'required',
             'image' => 'required|file|max:1024'
         ]);
-            if($request->hasFile('image')){
-                $validatedData['image'] = $request->file('image')->store('produk');
+            // if($request->hasFile('image')){
+            //     $validatedData['image'] = $request->file('image')->store('produk');
+            // }
+
+            $resep = Resep::find($resep->id);
+                if($request->hasFile('image')){
+                $request->file('image')->move('produk', $request->file('image')->getClientOriginalName());
+                $resep->image = $request->file('image')->getClientOriginalName();
+                $resep->save();
             }
 
             // $validatedData['desc'] = Str::limit(($request->desc),100);
 
-            Resep::where('id', $resep->id)->update($validatedData);
+            // Resep::where('id', $resep->id)->update($validatedData);
 
             return redirect('/reseps')->with(['berhasil','Data berhasil diupdate']);
     }

@@ -16,7 +16,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="desc" class="form-label">Deskripsi</label>
-                    <input id="desc" type="hidden" name="desc">
+                    <input id="desc" type="hidden" name="desc" value="{{old('desc')}}">
                     <trix-editor input="desc"></trix-editor>
                     @error('desc')
                     <div class="invalid-feedback">{{ $message }}</div>

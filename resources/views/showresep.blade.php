@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="card mt-3" style="width: 28rem;">
-            <img src="{{asset('storage/'. $resep->image)}}" class="card-img-top w-100">
+            <img src="{{asset('produk/'. $resep->image)}}" class="card-img-top w-100">
             <div class="card-body">
               <h5 class="card-title" style="font-size: 2rem; font-weight: 700;">{{$resep->name}}</h5>
                 <p class="card-text"><?php echo htmlspecialchars_decode($resep->desc)?></p>
