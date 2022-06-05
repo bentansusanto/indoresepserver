@@ -10,7 +10,7 @@
     <script type="text/javascript" src="/js/trix.js"></script>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-light shadow">
         <div class="container">
           <a class="navbar-brand" href="/">Indo Admin</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
